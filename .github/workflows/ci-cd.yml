@@ -101,16 +101,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up SonarScanner
-        run: |
-          wget -q -O sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-          unzip sonar-scanner-cli.zip
-          mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
-          echo "/opt/sonar-scanner/bin" >> $GITHUB_PATH
-      - name: Run SonarCloud Scan
-        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+      - name: Set up SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          organization: 'test-org1542122'
+          projectKey: 'test-org1542122_classwork-1'
+     - name: Run SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   snyk:
     name: Snyk Security Test
