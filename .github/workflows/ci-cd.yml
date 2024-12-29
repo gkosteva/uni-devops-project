@@ -105,6 +105,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'adoptopenjdk'  # Specify distribution here
       - name: Set up SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1
         with:
