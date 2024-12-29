@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened]  # Trigger on PR actions
 
 jobs:
   editorconfig-checker:
@@ -104,7 +106,7 @@ jobs:
         with:
           fetch-depth: 0  # Ensures full history is fetched for SonarCloud analysis
       - name: SonarCloud Scan
-        uses: sonarqube-scan-action@v4.1.0
+        uses: SonarSource/sonarqube-scan-action@v4
         with:
           args: -Dsonar.branch.name=main  # Specify the branch for SonarCloud analysis
         env:
