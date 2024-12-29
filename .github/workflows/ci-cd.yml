@@ -110,10 +110,10 @@ jobs:
         with:
           organization: 'test-org1542122'
           projectKey: 'test-org1542122_classwork-1'
-     - name: Run SonarCloud Scan
+      - name: Run SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   snyk:
     name: Snyk Security Test
