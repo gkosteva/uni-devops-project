@@ -101,20 +101,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Java 17
-        uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'adoptopenjdk'
-      - name: Set up SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v1
-        with:
-          organization: 'test-org1542122'
-          projectKey: 'test-org1542122_classwork-1'
-      - name: Run SonarCloud Scan
+          fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   snyk:
     name: Snyk Security Test
