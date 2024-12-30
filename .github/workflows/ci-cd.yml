@@ -66,10 +66,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  
       - uses: gitleaks/gitleaks-action@v2
         with:
-          args: --log-level debug
+          args: --log-level debug  
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -105,7 +105,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -142,8 +142,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
         run: |
-          docker build -t your-username/your-image-name .
+          docker build -t gkosteva/uni-devops-project:latest .
       - name: Push Docker Image
         run: |
-          docker push your-username/your-image-name
+          docker push gkosteva/uni-devops-project:latest
 
