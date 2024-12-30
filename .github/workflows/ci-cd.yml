@@ -146,4 +146,3 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push gkosteva/uni-devops-project:latest
-
